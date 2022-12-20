@@ -16,7 +16,6 @@ sealed class NavRoute(val route: String) {
 @Composable
 fun NotesNavHost() {
     val navController = rememberNavController()
-
     NavHost(navController = navController, startDestination = NavRoute.Start.route) {
         composable(NavRoute.Start.route) { StartScreen(navController = navController) }
         composable(NavRoute.Main.route) { MainScreen(navController = navController) }

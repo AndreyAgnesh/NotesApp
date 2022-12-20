@@ -19,6 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.notesapp.ui.theme.NotesAppTheme
 
+
 @Composable
 fun NoteScreen(navController: NavHostController) {
     Scaffold(

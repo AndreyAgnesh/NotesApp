@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.notesapp.navigation.NavRoute
 import com.example.notesapp.ui.theme.NotesAppTheme
 
+
 @Composable
 fun StartScreen(navController: NavHostController) {
     Scaffold(

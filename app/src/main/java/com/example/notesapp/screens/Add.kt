@@ -62,6 +62,5 @@ fun AddScreen(navController: NavHostController) {
 fun prevAddScreen() {
     NotesAppTheme {
         AddScreen(navController = rememberNavController())
-
     }
 }

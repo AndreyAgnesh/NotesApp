@@ -31,7 +31,6 @@ fun MainScreen(navController: NavHostController) {
                     contentDescription = "Add icons",
                     tint = Color.White
                 )
-
             }
         }
     )
