@@ -28,11 +28,8 @@ import com.example.notesapp.navigation.NavRoute
 import com.example.notesapp.ui.theme.NotesAppTheme
 
 @Composable
-fun MainScreen(navController: NavHostController) {
-    val context = LocalContext.current
-    val mViewModel: MainViewModel =
-        viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-
+fun MainScreen(navController: NavHostController, viewModel: MainViewModel) {
+    val notes = viewModel.readAllNotes().observeAsState(listOf()).value
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -48,33 +45,11 @@ fun MainScreen(navController: NavHostController) {
         }
     )
     {
-//        Column() {
-//            NoteItem(
-//                title = "Запись 1",
-//                subtitle = "Subtitle for note 1",
-//                navController = navController
-//            )
-//            NoteItem(
-//                title = "Запись 2",
-//                subtitle = "Subtitle for note 2",
-//                navController = navController
-//            )
-//            NoteItem(
-//                title = "Запись 3",
-//                subtitle = "Subtitle for note 3",
-//                navController = navController
-//            )
-//            NoteItem(
-//                title = "Запись 4",
-//                subtitle = "Subtitle for note 4",
-//                navController = navController
-//            )
-//        }
-//        LazyColumn{
-//            items(notes) { note ->
-//                NoteItem(note = note, navController =navController )
-//            }
-//        }
+        LazyColumn{
+            items(notes) { note ->
+                NoteItem(note = note, navController =navController )
+            }
+        }
     }
 }
 
@@ -110,8 +85,11 @@ fun NoteItem(note: Note, navController: NavHostController) {
 
 @Composable
 @Preview(showBackground = true)
-fun prevMainScreen() {
+fun PrevMainScreen() {
     NotesAppTheme {
-        MainScreen(navController = rememberNavController())
+        val context = LocalContext.current
+        val mViewModel: MainViewModel =
+            viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+        MainScreen(navController = rememberNavController(), viewModel = mViewModel)
     }
 }
