@@ -18,7 +18,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun initDatabase(type: String, onSuccess: () -> Unit) {
         Log.d("checkData", "MainViewModel initDatabase with type : $type")
-        when (type){
+        when (type) {
             TYPE_ROOM -> {
                 val dao = AppRoomDataBase.getInstance(context = context).getRoomDao()
                 REPOSITORY = RoomRepository(dao)
@@ -27,10 +27,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun addNote(note:Note, onSuccess: () -> Unit){
-        viewModelScope.launch(Dispatchers.IO){
-            REPOSITORY.create(note = note){
-                viewModelScope.launch(Dispatchers.Main){
+    fun addNote(note: Note, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.create(note = note) {
+                viewModelScope.launch(Dispatchers.Main) {
                     onSuccess()
                 }
             }
@@ -38,6 +38,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun readAllNotes() = REPOSITORY.readAll
+
+    fun updateNote(note: Note, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.update(note = note) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
+
+    fun deleteNote(note: Note, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            REPOSITORY.delete(note) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    onSuccess()
+                }
+            }
+        }
+    }
 }
 
 class MainViewModelFactory(private val application: Application) : ViewModelProvider.Factory {

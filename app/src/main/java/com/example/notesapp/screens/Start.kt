@@ -18,6 +18,9 @@ import com.example.notesapp.MainViewModel
 import com.example.notesapp.MainViewModelFactory
 import com.example.notesapp.navigation.NavRoute
 import com.example.notesapp.ui.theme.NotesAppTheme
+import com.example.notesapp.utils.Constants.Keys.FIREBASE_DATABASE
+import com.example.notesapp.utils.Constants.Keys.ROOM_DATABASE
+import com.example.notesapp.utils.Constants.Keys.WHAT_DATABASE_USE
 import com.example.notesapp.utils.TYPE_FIREBASE
 import com.example.notesapp.utils.TYPE_ROOM
 
@@ -34,7 +37,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Что хотите использовать?")
+            Text(text = WHAT_DATABASE_USE)
             Button(
                 onClick = {
                     mViewModel.initDatabase(TYPE_ROOM){
@@ -46,7 +49,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "Room")
+                Text(text = ROOM_DATABASE)
             }
             Button(
                 onClick = {
@@ -59,7 +62,7 @@ fun StartScreen(navController: NavHostController, viewModel: MainViewModel) {
                     .width(200.dp)
                     .padding(vertical = 8.dp)
             ) {
-                Text(text = "Firebase")
+                Text(text = FIREBASE_DATABASE)
             }
         }
     }

@@ -25,6 +25,10 @@ import com.example.notesapp.MainViewModelFactory
 import com.example.notesapp.model.Note
 import com.example.notesapp.navigation.NavRoute
 import com.example.notesapp.ui.theme.NotesAppTheme
+import com.example.notesapp.utils.Constants.Keys.ADD_NEW_NOTE
+import com.example.notesapp.utils.Constants.Keys.NOTE_NOTE
+import com.example.notesapp.utils.Constants.Keys.NOTE_SUBTITLE
+import com.example.notesapp.utils.Constants.Keys.NOTE_TITLE
 
 @Composable
 fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
@@ -41,7 +45,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Добавьте новую запись",
+                text = ADD_NEW_NOTE,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(vertical = 6.dp)
@@ -51,7 +55,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     title = it
                     isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "Note title") },
+                label = { Text(text = NOTE_TITLE) },
                 isError = title.isEmpty()
             )
             OutlinedTextField(value = subtitle,
@@ -59,7 +63,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     subtitle = it
                     isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "Note subtitle") },
+                label = { Text(text = NOTE_SUBTITLE) },
                 isError = subtitle.isEmpty()
             )
             Button(
@@ -71,7 +75,7 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel) {
                     }
                 }
             ) {
-                Text(text = "Add note")
+                Text(text = NOTE_NOTE)
             }
         }
     }
